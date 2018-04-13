@@ -1,22 +1,12 @@
-.my-page {
-  border: 0;
-}
-
-.content .title {
-  font-size: 1.5rem;
-}
-
-.container {
-  padding: 0 116px;
-  font-family: 'Monaco', monospace;
-}
-
 .hidden {
-  opacity: 0;
+  opacity:0;
+}
+.console-underscore {
+  display:inline-block;
+  position:relative;
+  top:-0.14em;
 }
 
-.console-underscore {
-  display: inline-block;
-  position: relative;
-  top: -0.14em;
+a, a:-webkit-any-link {
+  text-decoration: none;
 }
