@@ -27,10 +27,10 @@ const Colors = {
 // 生成タイミングを、routes使用時にするために関数化
 const GetRoutes = () => {
   return [
-    { path: '/', component: HomeView, label: 'home' },
-    { path: '/about', component: AboutView, label: 'about' },
-    { path: '/work', component: WorkView, label: 'work' },
-    { path: '/wip', component: WipView, label: 'wip' },
+    { path: '/', component: HomeView, label: 'Home' },
+    { path: '/about', component: AboutView, label: 'About' },
+    { path: '/work', component: WorkView, label: 'Work' },
+    { path: '/wip', component: WipView, label: 'Wip' },
   ];
 }
 
@@ -66,24 +66,36 @@ flex-wrap: wrap;
 };
 
 const Message = props => {
+  const Root = styled.div`
+    display: flex;
+  `;
   const Title = styled.div`
     font-size: 1.5rem;
   `;
   return (
-    <div style={props.withStyle}>
-      <div className="subtitle">{props.subtitle}</div>
-      <Title className="title">
-        {props.title}
-        {props.children}
-      </Title>
-    </div>
+    <Root>
+      <div>
+        <span className="fa-4x fa-layers fa-fw">
+          <i className="fas fa-square"></i>
+          <span className="fa-layers-text fa-inverse" data-fa-transform="shrink-11.5" style={{"font-weight":"900"}}>
+            {props.initial}
+          </span>
+        </span>
+      </div>
+      <div>
+        <div className="subtitle">{props.subtitle}</div>
+        <Title className="title">
+          {props.title}
+          {props.children}
+        </Title>
+      </div>
+    </Root>
   );
 };
 
 const Fontawesome = props => {
   const Root = styled.i`
     padding: 0 0.5rem;
-    font-size: inherit;
   `;
   return <Root className={props.value} />;
 };
@@ -249,8 +261,8 @@ const HomeView = () => {
   const MenuContainer = styled.div`
     width: 40%;
   `;
-  const MessageContainer = styled.div`
-    padding-bottom: 80px;
+  const MessageContainer = Card.extend`
+    margin-bottom: 80px;
   `;
   const MenuValue = () => {
     let values = GetRoutes();
@@ -261,7 +273,7 @@ const HomeView = () => {
   return (
     <HomeContainer className="container">
       <MessageContainer>
-        <Message subtitle="Hello, World.">
+        <Message initial="H" subtitle="Hello, World.">
           This is syunsuke kobashi portfolio site.
         </Message>
       </MessageContainer>
@@ -290,13 +302,13 @@ const HomeView = () => {
 
 const AboutView = () => {
   const AboutContainer = DefaultContainer.extend``;
-  const MessageContainer = styled.div`
-    padding-bottom: 40px;
+  const MessageContainer = Card.extend`
+    margin: 40px 0;
   `;
   const ProfileContainer = styled.div`
     padding: 20px;
   `;
-  const ProfileCard = Card.extend`
+  const ProfileCard = styled.div`
     display: inline-block;
     padding: 20px;
   `;
@@ -316,9 +328,6 @@ const AboutView = () => {
   const Description = styled.dd``;
   return (
     <AboutContainer className="container">
-      <MessageContainer>
-        <Message subtitle="This is about me." title="About me" />
-      </MessageContainer>
 
       <ProfileContainer>
         <ProfileCard>
@@ -349,7 +358,9 @@ const AboutView = () => {
           </DescriptionList>
 
         </ProfileCard>
-        <br/><br/><br/><br/>
+        <MessageContainer>
+          <Message initial="A" subtitle="This page is about me." title="About me" />
+        </MessageContainer>
         <ProfileCard>
           <TitleName>Social Account</TitleName>
 
@@ -389,8 +400,8 @@ const AboutView = () => {
 
 const WorkView = () => {
   const WorkContainer = DefaultContainer.extend``;
-  const MessageContainer = styled.div`
-    padding-bottom: 80px;
+  const MessageContainer = Card.extend`
+    margin-bottom: 80px;
   `;
   const WorksContainer = styled.div``;
 
@@ -423,6 +434,7 @@ const WorkView = () => {
     <WorkContainer className="container">
       <MessageContainer>
         <Message
+          initial="W"
           subtitle="My work is"
           title="Web Developer and Software Engineer in Tokyo."
           />
@@ -451,8 +463,8 @@ const WorkView = () => {
 
 const WipView = () => {
   const WipContainer = DefaultContainer.extend``;
-  const MessageContainer = styled.div`
-    padding-bottom: 80px;
+  const MessageContainer = Card.extend`
+    margin-bottom: 80px;
   `;
   const TodoContainer = styled.div``;
   const Todo = styled.li`
@@ -461,7 +473,7 @@ const WipView = () => {
   return(
     <WipContainer>
       <MessageContainer>
-        <Message subtitle="Work in progress.">
+        <Message  initial="Wi" subtitle="Work in progress.">
           このサイトについて実行したいこと<i className="em em-pick"></i>
         </Message>
       </MessageContainer>
